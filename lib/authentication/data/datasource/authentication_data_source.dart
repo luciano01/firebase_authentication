@@ -1,10 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_authentication/authentication/domain/repositories/authentication_repository.dart';
 
-class AuthenticationDataSource implements AuthenticationRepository {
+abstract class AuthenticationDataSource {
+  Future<User?> getUser();
+
+  Future<User> signIn({
+    required String email,
+    required String password,
+  });
+
+  Future<User> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
+
+  Future<void> signOut();
+}
+
+class AuthenticationDataSourceImpl implements AuthenticationDataSource {
   final FirebaseAuth firebaseAuth;
 
-  AuthenticationDataSource({required this.firebaseAuth});
+  AuthenticationDataSourceImpl({required this.firebaseAuth});
 
   @override
   Future<User?> getUser() async {
