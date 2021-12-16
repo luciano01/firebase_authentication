@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.deepOrange50,
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
@@ -76,17 +76,17 @@ class _LoginPageState extends State<LoginPage>
                   ),
                   Expanded(
                     flex: 3,
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4),
-                              topRight: Radius.circular(4),
-                            ),
-                          ),
-                          child: TabBar(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          topRight: Radius.circular(4),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          TabBar(
                             controller: _controller,
                             labelColor: AppColors.deepOrange300,
                             labelStyle: const TextStyle(
@@ -110,351 +110,365 @@ class _LoginPageState extends State<LoginPage>
                               ),
                             ],
                           ),
-                        ),
-                        Expanded(
-                          child: TabBarView(
-                            controller: _controller,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 16,
-                                      top: 22,
-                                    ),
-                                    child: TextFormField(
-                                      focusNode: _focusLoginEmail,
-                                      cursorColor: AppColors.deepOrange300,
-                                      keyboardType: TextInputType.emailAddress,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.email_outlined,
-                                          color: _focusLoginEmail.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        label: const Text('Email'),
-                                        labelStyle: TextStyle(
-                                          color: _focusLoginEmail.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        border: const OutlineInputBorder(),
-                                        enabledBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.grey600,
-                                          ),
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.deepOrange300,
-                                          ),
-                                        ),
+                          Expanded(
+                            child: TabBarView(
+                              controller: _controller,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        right: 16,
+                                        top: 22,
                                       ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 16,
-                                      top: 16,
-                                    ),
-                                    child: TextFormField(
-                                      focusNode: _focusLoginPassword,
-                                      cursorColor: AppColors.deepOrange300,
-                                      obscureText: true,
-                                      keyboardType: TextInputType.text,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.password_outlined,
-                                          color: _focusLoginPassword.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        label: const Text('Password'),
-                                        labelStyle: TextStyle(
-                                          color: _focusLoginPassword.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        border: const OutlineInputBorder(),
-                                        enabledBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.grey600,
+                                      child: TextFormField(
+                                        focusNode: _focusLoginEmail,
+                                        cursorColor: AppColors.deepOrange300,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: InputDecoration(
+                                          prefixIcon: Icon(
+                                            Icons.email_outlined,
+                                            color: _focusLoginEmail.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
                                           ),
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.deepOrange300,
+                                          label: const Text('Email'),
+                                          labelStyle: TextStyle(
+                                            color: _focusLoginEmail.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          enabledBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.grey600,
+                                            ),
+                                          ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.deepOrange300,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 16,
-                                      top: 16,
-                                    ),
-                                    width: MediaQuery.of(context).size.width,
-                                    child: ElevatedButton(
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(8),
-                                        child: Text('Login'),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        right: 16,
+                                        top: 16,
                                       ),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: AppColors.deepOrange300,
-                                      ),
-                                      onPressed: () {
-                                        Modular.to
-                                            .pushReplacementNamed('/home');
-                                      },
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        'Don\'t have an account?',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14,
+                                      child: TextFormField(
+                                        focusNode: _focusLoginPassword,
+                                        cursorColor: AppColors.deepOrange300,
+                                        obscureText: true,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          prefixIcon: Icon(
+                                            Icons.password_outlined,
+                                            color: _focusLoginPassword.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          label: const Text('Password'),
+                                          labelStyle: TextStyle(
+                                            color: _focusLoginPassword.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          enabledBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.grey600,
+                                            ),
+                                          ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.deepOrange300,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                      TextButton(
-                                        child: const Text(
-                                          'Sign-up',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                            color: AppColors.black,
-                                          ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        right: 16,
+                                        top: 16,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ElevatedButton(
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8),
+                                          child: Text('Login'),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: AppColors.deepOrange300,
                                         ),
                                         onPressed: () {
-                                          _controller.animateTo(1);
+                                          Modular.to
+                                              .pushReplacementNamed('/home');
                                         },
                                       ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: const [
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10),
-                                              child: Divider(
-                                                color: AppColors.grey600,
-                                              ),
-                                            ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        const Text(
+                                          'Don\'t have an account?',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 14,
                                           ),
-                                          Text(
-                                            'Or login with',
+                                        ),
+                                        TextButton(
+                                          child: const Text(
+                                            'Sign-up',
                                             style: TextStyle(
-                                              fontWeight: FontWeight.normal,
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 14,
+                                              color: AppColors.black,
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 10),
-                                              child: Divider(
-                                                color: AppColors.grey600,
+                                          onPressed: () {
+                                            _controller.animateTo(1);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: const [
+                                            Expanded(
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 10),
+                                                child: Divider(
+                                                  color: AppColors.grey600,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.only(
-                                          left: 16,
-                                          right: 16,
+                                            Text(
+                                              'Or login with',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 10),
+                                                child: Divider(
+                                                  color: AppColors.grey600,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: TextButton(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  AppImages.google,
-                                                  width: 25,
-                                                ),
-                                                const SizedBox(width: 10),
-                                                const Text(
-                                                  'Google SignIn',
-                                                  style: TextStyle(
-                                                    color: AppColors.black,
+                                        Container(
+                                          padding: const EdgeInsets.only(
+                                            left: 16,
+                                            right: 16,
+                                          ),
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          child: TextButton(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    AppImages.google,
+                                                    width: 25,
                                                   ),
-                                                ),
-                                              ],
+                                                  const SizedBox(width: 10),
+                                                  const Text(
+                                                    'Google SignIn',
+                                                    style: TextStyle(
+                                                      color: AppColors.black,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        right: 16,
+                                        top: 22,
+                                      ),
+                                      child: TextFormField(
+                                        focusNode: _focusSignUpEmail,
+                                        cursorColor: AppColors.deepOrange300,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: InputDecoration(
+                                          prefixIcon: Icon(
+                                            Icons.email_outlined,
+                                            color: _focusSignUpEmail.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          label: const Text('Email'),
+                                          labelStyle: TextStyle(
+                                            color: _focusSignUpEmail.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          enabledBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.grey600,
                                             ),
                                           ),
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 16,
-                                      top: 22,
-                                    ),
-                                    child: TextFormField(
-                                      focusNode: _focusSignUpEmail,
-                                      cursorColor: AppColors.deepOrange300,
-                                      keyboardType: TextInputType.emailAddress,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.email_outlined,
-                                          color: _focusSignUpEmail.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        label: const Text('Email'),
-                                        labelStyle: TextStyle(
-                                          color: _focusSignUpEmail.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        border: const OutlineInputBorder(),
-                                        enabledBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.grey600,
-                                          ),
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.deepOrange300,
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.deepOrange300,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 16,
-                                      top: 16,
-                                    ),
-                                    child: TextFormField(
-                                      focusNode: _focusSignUpPassword,
-                                      cursorColor: AppColors.deepOrange300,
-                                      obscureText: true,
-                                      keyboardType: TextInputType.text,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.password_outlined,
-                                          color: _focusSignUpPassword.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        label: const Text('Password'),
-                                        labelStyle: TextStyle(
-                                          color: _focusSignUpPassword.hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        border: const OutlineInputBorder(),
-                                        enabledBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.grey600,
-                                          ),
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.deepOrange300,
-                                          ),
-                                        ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        right: 16,
+                                        top: 16,
                                       ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 16,
-                                      top: 16,
-                                    ),
-                                    child: TextFormField(
-                                      focusNode: _focusSignUpRepeatPassword,
-                                      cursorColor: AppColors.deepOrange300,
-                                      obscureText: true,
-                                      keyboardType: TextInputType.text,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.password_outlined,
-                                          color: _focusSignUpRepeatPassword
-                                                  .hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        label: const Text('Repeat Password'),
-                                        labelStyle: TextStyle(
-                                          color: _focusSignUpRepeatPassword
-                                                  .hasFocus
-                                              ? AppColors.deepOrange300
-                                              : AppColors.grey600,
-                                        ),
-                                        border: const OutlineInputBorder(),
-                                        enabledBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.grey600,
+                                      child: TextFormField(
+                                        focusNode: _focusSignUpPassword,
+                                        cursorColor: AppColors.deepOrange300,
+                                        obscureText: true,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          prefixIcon: Icon(
+                                            Icons.password_outlined,
+                                            color: _focusSignUpPassword.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
                                           ),
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: AppColors.deepOrange300,
+                                          label: const Text('Password'),
+                                          labelStyle: TextStyle(
+                                            color: _focusSignUpPassword.hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          enabledBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.grey600,
+                                            ),
+                                          ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.deepOrange300,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      right: 16,
-                                      top: 16,
-                                    ),
-                                    width: MediaQuery.of(context).size.width,
-                                    child: ElevatedButton(
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(8),
-                                        child: Text('Sign-up'),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        right: 16,
+                                        top: 16,
                                       ),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: AppColors.deepOrange300,
+                                      child: TextFormField(
+                                        focusNode: _focusSignUpRepeatPassword,
+                                        cursorColor: AppColors.deepOrange300,
+                                        obscureText: true,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          prefixIcon: Icon(
+                                            Icons.password_outlined,
+                                            color: _focusSignUpRepeatPassword
+                                                    .hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          label: const Text('Repeat Password'),
+                                          labelStyle: TextStyle(
+                                            color: _focusSignUpRepeatPassword
+                                                    .hasFocus
+                                                ? AppColors.deepOrange300
+                                                : AppColors.grey600,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          enabledBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.grey600,
+                                            ),
+                                          ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: AppColors.deepOrange300,
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      onPressed: () {},
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        right: 16,
+                                        top: 16,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ElevatedButton(
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8),
+                                          child: Text('Sign-up'),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: AppColors.deepOrange300,
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
