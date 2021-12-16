@@ -1,6 +1,7 @@
 import 'package:firebase_authentication/core/utils/app_colors.dart';
 import 'package:firebase_authentication/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -200,7 +201,9 @@ class _LoginPageState extends State<LoginPage>
                                   style: ElevatedButton.styleFrom(
                                     primary: AppColors.deepOrange300,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Modular.to.pushReplacementNamed('/home');
+                                  },
                                 ),
                               ),
                               Row(
