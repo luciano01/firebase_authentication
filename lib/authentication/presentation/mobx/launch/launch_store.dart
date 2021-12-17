@@ -18,7 +18,7 @@ abstract class _LaunchStoreBase with Store {
         Modular.to.pushReplacementNamed('/home');
       } else if (authenticationStore.authenticationStatus ==
           AuthenticationStatus.logoff) {
-        Modular.to.pushReplacementNamed('/login');
+        Modular.to.pushReplacementNamed('/authentication');
       }
     });
   }

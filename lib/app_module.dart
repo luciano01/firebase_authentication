@@ -7,9 +7,10 @@ import 'package:firebase_authentication/authentication/presentation/mobx/authent
 import 'package:firebase_authentication/authentication/presentation/mobx/home/home_store.dart';
 import 'package:firebase_authentication/authentication/presentation/mobx/launch/launch_store.dart';
 import 'package:firebase_authentication/authentication/presentation/mobx/login/login_store.dart';
+import 'package:firebase_authentication/authentication/presentation/mobx/signup/signup_store.dart';
 import 'package:firebase_authentication/authentication/presentation/pages/home/home_page.dart';
 import 'package:firebase_authentication/authentication/presentation/pages/launch/launch_page.dart';
-import 'package:firebase_authentication/authentication/presentation/pages/login/login_page.dart';
+import 'package:firebase_authentication/authentication/presentation/pages/authentication/authentication_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
@@ -60,6 +61,11 @@ class AppModule extends Module {
             authenticationStore: i.get<AuthenticationStore>(),
           ),
         ),
+        Bind(
+          (i) => SignupStore(
+            authenticationStore: i.get<AuthenticationStore>(),
+          ),
+        ),
       ];
 
   @override
@@ -69,8 +75,8 @@ class AppModule extends Module {
       child: (context, args) => const LaunchPage(),
     ),
     ChildRoute(
-      '/login',
-      child: (context, args) => const LoginPage(),
+      '/authentication',
+      child: (context, args) => const AuthenticationPage(),
     ),
     ChildRoute(
       '/home',

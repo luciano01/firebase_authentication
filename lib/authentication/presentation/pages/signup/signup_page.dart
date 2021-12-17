@@ -1,24 +1,22 @@
-import 'package:firebase_authentication/authentication/presentation/mobx/login/login_store.dart';
-import 'package:firebase_authentication/authentication/presentation/widgets/home/dont_have_account_widget.dart';
+import 'package:firebase_authentication/authentication/presentation/mobx/signup/signup_store.dart';
 import 'package:firebase_authentication/authentication/presentation/widgets/home/login_sign_in_button_widget.dart';
-import 'package:firebase_authentication/authentication/presentation/widgets/home/or_login_with_widget.dart';
 import 'package:firebase_authentication/authentication/presentation/widgets/home/text_form_field_widget.dart';
 import 'package:firebase_authentication/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({
+class SignupPage extends StatefulWidget {
+  const SignupPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final LoginStore store = Modular.get<LoginStore>();
+class _SignupPageState extends State<SignupPage> {
+  final SignupStore store = Modular.get<SignupStore>();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -104,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      autovalidateMode: store.autoValidateMode,
+      autovalidateMode: store.autovalidateMode,
       child: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
@@ -126,11 +124,11 @@ class _LoginPageState extends State<LoginPage> {
             onChanged: store.setPassword,
           ),
           LoginSignInButtonWidget(
-            label: 'Login',
+            label: 'Sign-up',
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 store
-                    .signInWithEmailAndPassword(
+                    .createUserWithEmailAndPassword(
                   email: store.email,
                   password: store.password,
                 )
@@ -139,15 +137,6 @@ class _LoginPageState extends State<LoginPage> {
                 });
               }
             },
-          ),
-          const DontHaveAccountWidget(
-            message: 'Don\'t have an account?',
-            label: 'Sign-up',
-          ),
-          OrLoginWithWidget(
-            message: 'Or login with',
-            label: 'Google SignIn',
-            onPressed: () {},
           ),
         ],
       ),

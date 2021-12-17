@@ -13,7 +13,7 @@ abstract class _HomeStoreBase with Store {
 
   void signOut() async {
     await authenticationStore.signOut().then((_) {
-      Modular.to.pushReplacementNamed('/login');
+      Modular.to.pushReplacementNamed('/authentication');
     });
   }
 }
