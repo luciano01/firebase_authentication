@@ -48,17 +48,26 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Center(
-        child: ElevatedButton.icon(
-          icon: const Icon(Icons.logout),
-          label: const Text('Sign-out'),
-          style: ElevatedButton.styleFrom(
-            primary: AppColors.deepOrange300,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(store.authenticationStore.user?.uid ?? 'No Token'),
+          Text(store.authenticationStore.user?.email ?? 'No Email'),
+          const SizedBox(height: 16),
+          Center(
+            child: ElevatedButton.icon(
+              icon: const Icon(Icons.logout),
+              label: const Text('Sign-out'),
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.deepOrange300,
+              ),
+              onPressed: () {
+                store.signOut();
+              },
+            ),
           ),
-          onPressed: () {
-            store.signOut();
-          },
-        ),
+        ],
       ),
     );
   }

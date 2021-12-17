@@ -3,6 +3,7 @@ import 'package:firebase_authentication/authentication/presentation/widgets/home
 import 'package:firebase_authentication/authentication/presentation/widgets/home/text_form_field_widget.dart';
 import 'package:firebase_authentication/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
@@ -123,21 +124,48 @@ class _SignupPageState extends State<SignupPage> {
             validator: store.validatePassword,
             onChanged: store.setPassword,
           ),
-          LoginSignInButtonWidget(
-            label: 'Sign-up',
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                store
-                    .createUserWithEmailAndPassword(
-                  email: store.email,
-                  password: store.password,
-                )
-                    .then((_) {
-                  store.setErrorMessage(null);
-                });
-              }
-            },
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Observer(builder: (_) {
+                return Checkbox(
+                  fillColor: MaterialStateProperty.all(
+                    AppColors.deepOrange300,
+                  ),
+                  value: store.isCheck,
+                  onChanged: (value) {
+                    store.setCheckTerms(value!);
+                  },
+                );
+              }),
+              const Text(
+                'I agree with the terms of service.',
+                style: TextStyle(
+                  color: AppColors.black,
+                ),
+              ),
+            ],
           ),
+          Observer(builder: (_) {
+            return LoginSignInButtonWidget(
+              label: 'Sign-up',
+              onPressed: store.isCheck
+                  ? () {
+                      if (_formKey.currentState!.validate()) {
+                        store
+                            .createUserWithEmailAndPassword(
+                          email: store.email,
+                          password: store.password,
+                        )
+                            .then((_) {
+                          store.setErrorMessage(null);
+                        });
+                      }
+                    }
+                  : null,
+            );
+          }),
         ],
       ),
     );
