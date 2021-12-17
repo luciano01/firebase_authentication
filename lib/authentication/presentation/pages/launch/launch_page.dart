@@ -19,20 +19,17 @@ class _LaunchPageState extends State<LaunchPage> {
 
   @override
   void initState() {
-    /* disposer = autorun((_) {
+    disposer = autorun((_) {
       store.checkIfUserIsLogged();
-    }); */
-    Future.delayed(const Duration(seconds: 2)).then((_) {
-      Modular.to.pushReplacementNamed('/login');
     });
     super.initState();
   }
 
-  /* @override
+  @override
   void dispose() {
     disposer();
     super.dispose();
-  } */
+  }
 
   @override
   Widget build(BuildContext context) {

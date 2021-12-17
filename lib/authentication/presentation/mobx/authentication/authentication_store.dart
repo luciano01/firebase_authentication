@@ -10,7 +10,9 @@ class AuthenticationStore = _AuthenticationStoreBase with _$AuthenticationStore;
 abstract class _AuthenticationStoreBase with Store {
   final GetAuthentication usecase;
 
-  _AuthenticationStoreBase({required this.usecase});
+  _AuthenticationStoreBase({required this.usecase}) {
+    usecase.getUser().then((setUser));
+  }
 
   @observable
   AuthenticationStatus authenticationStatus = AuthenticationStatus.loading;

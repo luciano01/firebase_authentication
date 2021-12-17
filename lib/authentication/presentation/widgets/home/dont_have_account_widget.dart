@@ -2,13 +2,11 @@ import 'package:firebase_authentication/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class DontHaveAccountWidget extends StatelessWidget {
-  final TabController controller;
   final void Function()? onPressed;
   final String label;
   final String message;
   const DontHaveAccountWidget({
     Key? key,
-    required this.controller,
     required this.onPressed,
     required this.label,
     required this.message,

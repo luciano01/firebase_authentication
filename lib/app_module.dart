@@ -4,7 +4,9 @@ import 'package:firebase_authentication/authentication/data/repositories/authent
 import 'package:firebase_authentication/authentication/domain/repositories/authentication_repository.dart';
 import 'package:firebase_authentication/authentication/domain/usecases/get_authentication.dart';
 import 'package:firebase_authentication/authentication/presentation/mobx/authentication/authentication_store.dart';
+import 'package:firebase_authentication/authentication/presentation/mobx/home/home_store.dart';
 import 'package:firebase_authentication/authentication/presentation/mobx/launch/launch_store.dart';
+import 'package:firebase_authentication/authentication/presentation/mobx/login/login_store.dart';
 import 'package:firebase_authentication/authentication/presentation/pages/home/home_page.dart';
 import 'package:firebase_authentication/authentication/presentation/pages/launch/launch_page.dart';
 import 'package:firebase_authentication/authentication/presentation/pages/login/login_page.dart';
@@ -44,7 +46,17 @@ class AppModule extends Module {
           ),
         ),
         Bind(
+          (i) => HomeStore(
+            authenticationStore: i.get<AuthenticationStore>(),
+          ),
+        ),
+        Bind(
           (i) => LaunchStore(
+            authenticationStore: i.get<AuthenticationStore>(),
+          ),
+        ),
+        Bind(
+          (i) => LoginStore(
             authenticationStore: i.get<AuthenticationStore>(),
           ),
         ),

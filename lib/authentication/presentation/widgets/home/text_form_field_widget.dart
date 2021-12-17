@@ -6,22 +6,22 @@ class TextFormFieldWidget extends StatelessWidget {
   final TextInputType keyboardType;
   final String label;
   final IconData icon;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
   const TextFormFieldWidget({
     Key? key,
     required this.focusNode,
     required this.keyboardType,
     required this.label,
     required this.icon,
+    required this.onChanged,
+    required this.validator,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 16,
-        right: 16,
-        top: 22,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextFormField(
         focusNode: focusNode,
         cursorColor: AppColors.deepOrange300,
@@ -51,6 +51,8 @@ class TextFormFieldWidget extends StatelessWidget {
             ),
           ),
         ),
+        validator: validator,
+        onChanged: onChanged,
       ),
     );
   }
