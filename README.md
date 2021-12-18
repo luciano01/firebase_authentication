@@ -2,7 +2,9 @@
 Authentication with FirebaseAuth by Email/Password and Google.
 
 ## Screenshots
-Soon...
+<p float="left">
+  <img width="200" src="https://github.com/luciano01/firebase_authentication/blob/master/assets/screenshots/Launch.png"> <img width="200" src="https://github.com/luciano01/firebase_authentication/blob/master/assets/screenshots/Login.png"> <img width="200" src="https://github.com/luciano01/firebase_authentication/blob/master/assets/screenshots/SignUp.png">
+</p>
 
 ## For developers
 > To clone locally
@@ -22,7 +24,6 @@ $ flutter clean
 $ flutter pub get
 $ flutter run --release
 ```
-
 ## Functionalities
 
 - [x] Login by Email and Password.
