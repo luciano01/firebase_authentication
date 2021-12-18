@@ -52,6 +52,14 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          if (store.authenticationStore.user!.photoURL == null)
+            const FlutterLogo(size: 100)
+          else
+            Image.network(
+              store.authenticationStore.user!.photoURL!,
+              width: 100,
+            ),
+          const SizedBox(height: 16),
           Text(store.authenticationStore.user?.uid ?? 'No Token'),
           Text(store.authenticationStore.user?.email ?? 'No Email'),
           const SizedBox(height: 16),
@@ -64,6 +72,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onPressed: () {
                 store.signOut();
+                store.disconnect();
               },
             ),
           ),

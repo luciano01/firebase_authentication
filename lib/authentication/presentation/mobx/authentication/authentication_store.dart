@@ -42,6 +42,11 @@ abstract class _AuthenticationStoreBase with Store {
     return user;
   }
 
+  Future<User> getGoogleLogin() async {
+    user = await usecase.getGoogleLogin();
+    return user!;
+  }
+
   Future<User?> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -59,6 +64,12 @@ abstract class _AuthenticationStoreBase with Store {
 
   Future signOut() async {
     await usecase.signOut().whenComplete(() {
+      user = null;
+    });
+  }
+
+  Future disconnect() async {
+    await usecase.disconnect().whenComplete(() {
       user = null;
     });
   }

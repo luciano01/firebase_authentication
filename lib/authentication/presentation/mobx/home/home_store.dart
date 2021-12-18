@@ -16,4 +16,10 @@ abstract class _HomeStoreBase with Store {
       Modular.to.pushReplacementNamed('/authentication');
     });
   }
+
+  void disconnect() async {
+    await authenticationStore.disconnect().then((_) {
+      Modular.to.pushReplacementNamed('/authentication');
+    });
+  }
 }

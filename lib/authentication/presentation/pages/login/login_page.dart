@@ -147,7 +147,9 @@ class _LoginPageState extends State<LoginPage> {
           OrLoginWithWidget(
             message: 'Or login with',
             label: 'Google SignIn',
-            onPressed: () {},
+            onPressed: () {
+              store.getGoogleLogin();
+            },
           ),
         ],
       ),

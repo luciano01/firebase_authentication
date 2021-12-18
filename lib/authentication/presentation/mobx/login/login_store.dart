@@ -100,5 +100,42 @@ abstract class _LoginStoreBase with Store {
     });
   }
 
+  Future getGoogleLogin() async {
+    loading = true;
+    try {
+      await authenticationStore.getGoogleLogin().then((user) async {
+        loading = false;
+        Modular.to.popUntil((route) => route.isFirst);
+        Modular.to.pushReplacementNamed('/home');
+      });
+    } on FirebaseAuthException catch (error) {
+      loading = false;
+      switch (error.code) {
+        case "invalid-email":
+          errorMessage = "Your email address appears to be malformed.";
+          break;
+        case "wrong-password":
+          errorMessage = "Your password is wrong.";
+          break;
+        case "user-not-found":
+          errorMessage = "User with this email doesn't exist.";
+          break;
+        case "user-disabled":
+          errorMessage = "User with this email has been disabled.";
+          break;
+        case "too-many-requests":
+          errorMessage = "Too many requests. Try again later.";
+          break;
+        case "operation-not-allowed":
+          errorMessage = "Signing in with Email and Password is not enabled.";
+          break;
+        default:
+          errorMessage = "An undefined Error happened.";
+      }
+    }
+  }
+
   Future signOut() async => await authenticationStore.signOut();
+
+  Future disconnect() async => await authenticationStore.disconnect();
 }

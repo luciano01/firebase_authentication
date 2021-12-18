@@ -24,11 +24,6 @@ $ flutter clean
 $ flutter pub get
 $ flutter run --release
 ```
-## Functionalities
-
-- [x] Login by Email and Password.
-- [x] Register New Account by Email and Password.
-- [ ] Login by Google (Soon).
 
 ## Built with
 - [Dart programming language](https://dart.dev/)

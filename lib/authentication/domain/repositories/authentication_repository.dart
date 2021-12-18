@@ -8,10 +8,14 @@ abstract class AuthenticationRepository {
     required String password,
   });
 
+  Future<User> getGoogleLogin();
+
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
   });
 
   Future<void> signOut();
+
+  Future<void> disconnect();
 }

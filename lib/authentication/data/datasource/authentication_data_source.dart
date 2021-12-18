@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthenticationDataSource {
   Future<User?> getUser();
@@ -8,16 +9,21 @@ abstract class AuthenticationDataSource {
     required String password,
   });
 
+  Future<User> getGoogleLogin();
+
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
   });
 
   Future<void> signOut();
+
+  Future<void> disconnect();
 }
 
 class AuthenticationDataSourceImpl implements AuthenticationDataSource {
   final FirebaseAuth firebaseAuth;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   AuthenticationDataSourceImpl({required this.firebaseAuth});
 
@@ -39,6 +45,22 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
   }
 
   @override
+  Future<User> getGoogleLogin() async {
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    final User? user =
+        (await firebaseAuth.signInWithCredential(credential)).user;
+    return user!;
+  }
+
+  @override
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -52,6 +74,11 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
 
   @override
   Future<void> signOut() async {
-    return await firebaseAuth.signOut();
+    await firebaseAuth.signOut();
+  }
+
+  @override
+  Future<void> disconnect() async {
+    await googleSignIn.disconnect();
   }
 }

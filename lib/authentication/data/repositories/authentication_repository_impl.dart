@@ -24,6 +24,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
+  Future<User> getGoogleLogin() async {
+    return await dataSource.getGoogleLogin();
+  }
+
+  @override
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -36,6 +41,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
   @override
   Future<void> signOut() async {
-    return await dataSource.signOut();
+    await dataSource.signOut();
+  }
+
+  @override
+  Future<void> disconnect() async {
+    await dataSource.disconnect();
   }
 }
