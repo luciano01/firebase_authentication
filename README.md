@@ -34,6 +34,9 @@ $ flutter run --release
 - [Dart programming language](https://dart.dev/)
 - [Flutter](https://flutter.dev/)
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [Flutter Modular](https://pub.dev/packages/flutter_modular)
+- [Firebase](https://firebase.google.com/?hl=pt-br)
+- [MobX](https://pub.dev/packages/mobx)
 
 ## Author
 - ([Linkedin - Luciano Martins](https://br.linkedin.com/in/luciano01))
