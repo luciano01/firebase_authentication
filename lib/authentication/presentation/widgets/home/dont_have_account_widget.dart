@@ -25,6 +25,7 @@ class DontHaveAccountWidget extends StatelessWidget {
               fontSize: 14,
             ),
           ),
+          const SizedBox(width: 10),
           Text(
             label,
             style: const TextStyle(
