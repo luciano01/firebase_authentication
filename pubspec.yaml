@@ -36,6 +36,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/screenshots/
 
 vars: 
     clean: flutter clean
